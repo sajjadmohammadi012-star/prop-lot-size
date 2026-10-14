@@ -87,7 +87,7 @@ function current(){return SPECS.find(s=>s.symbol===$("symbol").value)||SPECS[0]}
 function build(){
  const sel=$("symbol");
  GROUPS.forEach(([g,label])=>{const rows=SPECS.filter(s=>s.group===g);if(!rows.length)return;const opt=document.createElement("optgroup");opt.label=label;rows.forEach(s=>{const o=document.createElement("option");o.value=s.symbol;o.textContent=s.symbol;opt.appendChild(o)});sel.appendChild(opt)});
- sel.value="XAUUSD.x";updateSpec();restoreInputs();
+ sel.value="XAUUSD.x";restoreInputs();updateSpec();
 }
 function resetOutput(){lastLot=null;["lotResult","targetRisk","actualRisk","actualPct","riskPerLot","tickCount","usedDistance"].forEach(id=>$(id).textContent="—");$("lotCaption").textContent="واردکردن اطلاعات لازم است";$("copyMsg").textContent=""}
 function setStatus(text,type){$("status").textContent=text;$("status").className="status"+(type?" "+type:"")}
