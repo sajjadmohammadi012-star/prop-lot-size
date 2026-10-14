@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1220">
+<meta name="description" content="ماشین‌حساب لات سایز پراپ با مشخصات نمادهای MT5">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Prop Lot Size">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icons/icon.svg">
+<title>ماشین‌حساب لات سایز پراپ</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#111c2e;--panel2:#152238;--line:#263750;--text:#edf3fb;--muted:#9fb0c7;--accent:#7dd3fc;--good:#86efac;--warn:#fbbf24;--bad:#fca5a5}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 400px at 70% -10%,#18304c 0%,transparent 70%),var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.65}
+.wrap{max-width:900px;margin:auto;padding:18px 13px 40px}header{padding:7px 4px 18px}.tag{font-size:11px;color:var(--accent);font-weight:800;letter-spacing:.7px}h1{font-size:clamp(24px,5vw,34px);line-height:1.35;margin:6px 0}.sub{font-size:13px;color:var(--muted)}.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.chip{font-size:11px;border:1px solid var(--line);padding:4px 9px;border-radius:999px;color:#d1deed;background:#101a2a}
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:13px;align-items:start}.card{background:linear-gradient(180deg,#152238,#111c2e);border:1px solid var(--line);border-radius:17px;padding:16px;min-width:0;box-shadow:0 12px 30px #0002}.card h2{margin:0 0 13px;font-size:16px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:5px;min-width:0}.full{grid-column:1/-1}label{font-size:12px;color:#c5d2e4;font-weight:700}input,select{width:100%;min-width:0;border:1px solid #31445f;background:#0b1526;color:var(--text);border-radius:10px;padding:11px 12px;font:inherit;font-size:15px;outline:none}input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px #38bdf822}input::placeholder{color:#61758e}.hint{font-size:11px;color:var(--muted)}.seg{display:flex;gap:7px}.seg button,button{font:inherit;font-weight:750;cursor:pointer;border:1px solid #334761;border-radius:10px;background:#0b1526;color:#cbd8e9;padding:10px}.seg button{flex:1}.seg button.active{border-color:#38bdf8;background:#0e3a55;color:#e5f8ff}button.primary{background:linear-gradient(135deg,#0284c7,#0369a1);border-color:#38bdf8;color:white}.hero{border:1px solid #245879;background:linear-gradient(130deg,#0369a126,#111c2e);border-radius:14px;padding:16px;margin-bottom:10px}.hero-label{color:#b5d9ed;font-size:12px}.lotline{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}.lot{font-size:clamp(40px,8vw,54px);font-weight:850;line-height:1.25;font-variant-numeric:tabular-nums}.muted{color:var(--muted);font-size:12px}.results{display:grid;grid-template-columns:1fr 1fr;gap:9px}.metric{border:1px solid var(--line);background:#08122066;border-radius:12px;padding:11px;min-width:0}.metric .k{font-size:11px;color:var(--muted)}.metric .v{font-size:16px;font-weight:750;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}.status{border:1px solid var(--line);background:#080f1b99;padding:11px 12px;border-radius:11px;font-size:12px;margin-top:12px;color:#c9d6e7}.status.good{border-color:#24583e;color:var(--good)}.status.warn{border-color:#664f1c;color:var(--warn)}.status.bad{border-color:#63333a;color:var(--bad)}.specs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:13px}.spec{border:1px solid var(--line);border-radius:10px;padding:9px;background:#08122055}.spec .k{color:var(--muted);font-size:10px}.spec .v{font-size:13px;font-weight:750;overflow-wrap:anywhere}.warning{font-size:11px;color:#e7d7aa;border:1px solid #5d4b26;background:#5d4b261c;border-radius:11px;padding:11px;margin-top:12px}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.actions button{flex:1}.foot{font-size:11px;color:#8ea1ba;margin-top:16px;line-height:1.8}
+@media(max-width:680px){.wrap{padding:12px 10px 30px}.layout{grid-template-columns:1fr}.card{padding:14px}header{padding-bottom:13px}}
+@media(max-width:365px){.fields{grid-template-columns:1fr}.full{grid-column:auto}.specs{grid-template-columns:1fr 1fr}.metric .v{font-size:14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<div class="tag">MT5 · PROP ACCOUNT · OFFLINE READY</div>
+<h1>ماشین‌حساب اختصاصی لات سایز</h1>
+<div class="sub">درصد ریسک، موجودی حساب و حد ضرر را وارد کن؛ حجم سفارش با محدودیت‌های نماد و گام لات محاسبه می‌شود.</div>
+<div class="chips"><span class="chip">۴۸ نماد دارای پسوند .x</span><span class="chip">ارز حساب: USD</span><span class="chip">محاسبه آفلاین</span></div>
+</header>
+<div class="layout">
+<section class="card">
+<h2>۱. اطلاعات معامله</h2>
+<div class="fields">
+<div class="field full"><label for="symbol">نماد معاملاتی</label><select id="symbol"></select><div id="symMeta" class="hint"></div></div>
+<div class="field"><label for="capital" id="capitalLabel">موجودی حساب (USD)</label><input id="capital" type="number" min="0" step="any" inputmode="decimal" placeholder="مثلاً 10000"></div>
+<div class="field"><label for="riskPct">ریسک هر معامله (%)</label><input id="riskPct" type="number" min="0.01" max="100" step="any" inputmode="decimal" value="1"></div>
+<div class="field full"><label>مبنای حساب</label><div class="seg"><button type="button" id="balance" class="active">Balance</button><button type="button" id="equity">Equity</button></div><div class="hint">عدد Balance یا Equity را خودت وارد می‌کنی؛ اتصال زنده به حساب وجود ندارد.</div></div>
+<div class="field full"><label>جهت معامله</label><div class="seg"><button type="button" id="buy" class="active">BUY / خرید</button><button type="button" id="sell">SELL / فروش</button></div></div>
+<div class="field full"><label>روش تعیین استاپ</label><div class="seg"><button type="button" id="byPrices" class="active">قیمت ورود و استاپ</button><button type="button" id="byDistance">فاصله استاپ</button></div></div>
+<div class="field" id="entryWrap"><label for="entry">قیمت ورود</label><input id="entry" type="number" step="any" inputmode="decimal" placeholder="قیمت ورود"></div>
+<div class="field" id="stopWrap"><label for="stop">قیمت Stop Loss</label><input id="stop" type="number" step="any" inputmode="decimal" placeholder="قیمت استاپ"></div>
+<div class="field full" id="distanceWrap" hidden><label for="distance">فاصله حد ضرر برحسب واحد قیمت</label><input id="distance" type="number" min="0" step="any" inputmode="decimal" placeholder="مثلاً 2.50 برای طلا"><div class="hint">فاصله را به واحد قیمت وارد کن، نه تعداد پیپ/پوینت.</div></div>
+</div>
+<div class="actions"><button class="primary" id="calcBtn" type="button">محاسبه لات سایز</button><button type="button" id="resetBtn">پاک‌کردن استاپ</button></div>
+<div class="warning">داده‌های Tick Value و مشخصات قرارداد از CSV ترمینال MT5 استخراج شده‌اند (۱۴ اکتبر ۲۰۲۶، زمان سرور 07:57). قیمت‌ها زنده نیستند. تغییر نرخ تبدیل، مشخصات پراپ، کمیسیون و اسلیپیج ممکن است زیان نهایی را تغییر دهند. پیش از استفاده واقعی با دمو تطبیق بده.</div>
+</section>
+<section class="card">
+<h2>۲. نتیجه محاسبه</h2>
+<div class="hero"><div class="hero-label">لات پیشنهادی (گرد شده به پایین)</div><div class="lotline"><div class="lot" id="lotResult">—</div><span class="muted" id="lotCaption">واردکردن اطلاعات لازم است</span></div></div>
+<div class="results">
+<div class="metric"><div class="k">بودجه ریسک</div><div class="v" id="targetRisk">—</div></div>
+<div class="metric"><div class="k">ریسک برآوردی با لات نهایی</div><div class="v" id="actualRisk">—</div></div>
+<div class="metric"><div class="k">ریسک واقعی برحسب درصد</div><div class="v" id="actualPct">—</div></div>
+<div class="metric"><div class="k">زیان نظری ۱ لات برای این استاپ</div><div class="v" id="riskPerLot">—</div></div>
+<div class="metric"><div class="k">تعداد تیک‌های محاسباتی</div><div class="v" id="tickCount">—</div></div>
+<div class="metric"><div class="k">فاصله استاپِ محاسباتی</div><div class="v" id="usedDistance">—</div></div>
+</div>
+<div id="status" class="status">برای شروع، موجودی حساب و اطلاعات استاپ را وارد کن.</div>
+<div class="specs">
+<div class="spec"><div class="k">Tick Size</div><div class="v" id="spTick">—</div></div>
+<div class="spec"><div class="k">Tick Value برای ضرر ۱ لات (USD)</div><div class="v" id="spTickValue">—</div></div>
+<div class="spec"><div class="k">حداقل لات</div><div class="v" id="spMin">—</div></div>
+<div class="spec"><div class="k">گام لات</div><div class="v" id="spStep">—</div></div>
+<div class="spec"><div class="k">حداکثر لات</div><div class="v" id="spMax">—</div></div>
+<div class="spec"><div class="k">قیمت Bid / Ask در CSV</div><div class="v" id="spQuotes">—</div></div>
+</div>
+<div class="actions"><button class="primary" type="button" id="copyBtn">کپی لات</button></div>
+<div class="hint" id="copyMsg" aria-live="polite"></div>
+</section>
+</div>
+<div class="foot">مبنای محاسبه: زیان یک تیک برای یک لات × تعداد تیک‌های حد ضرر. فاصله استاپ به تیک کامل رو به بالا گرد می‌شود و لات به گام مجاز حجم رو به پایین؛ بنابراین گرد کردن، حجم را به سمت افزایش ریسک نمی‌برد. این محاسبه جایگزین تأیید نهایی سفارش در MT5 نیست. <span id="selectedInfo"></span></div>
+</div>
+<script>
+"use strict";
+const RAW = [["AUDCAD.x","Forex",0.00001,0.703596079563,0.01,500,0.01,5,true],["AUDCHF.x","Forex",0.00001,1.200624324649,0.01,500,0.01,5,true],["AUDJPY.x","Forex",0.001,0.63155235569,0.01,500,0.01,3,true],["AUDNZD.x","Forex",0.00001,0.56218,0.01,500,0.01,5,true],["AUDUSD.x","Forex",0.00001,1,0.01,500,0.01,5,true],["CADCHF.x","Forex",0.00001,1.200624324649,0.01,500,0.01,5,true],["CADJPY.x","Forex",0.001,0.63155235569,0.01,500,0.01,3,true],["CHFJPY.x","Forex",0.001,0.63155235569,0.01,100,0.01,3,true],["EURAUD.x","Forex",0.00001,0.70069,0.01,100,0.01,5,true],["EURCAD.x","Forex",0.00001,0.703596079563,0.01,100,0.01,5,true],["EURCHF.x","Forex",0.00001,1.200624324649,0.01,100,0.01,5,true],["EURGBP.x","Forex",0.00001,1.32604,0.01,100,0.01,5,true],["EURJPY.x","Forex",0.001,0.63155235569,0.01,100,0.01,3,true],["EURNZD.x","Forex",0.00001,0.56218,0.01,100,0.01,5,true],["EURUSD.x","Forex",0.00001,1,0.01,500,0.01,5,true],["GBPAUD.x","Forex",0.00001,0.70069,0.01,35,0.01,5,true],["GBPCAD.x","Forex",0.00001,0.703596079563,0.01,100,0.01,5,true],["GBPCHF.x","Forex",0.00001,1.200624324649,0.01,100,0.01,5,true],["GBPJPY.x","Forex",0.001,0.63155235569,0.01,100,0.01,3,true],["GBPNZD.x","Forex",0.00001,0.56218,0.01,100,0.01,5,true],["GBPUSD.x","Forex",0.00001,1,0.01,100,0.01,5,true],["NZDCAD.x","Forex",0.00001,0.703596079563,0.01,100,0.01,5,true],["NZDCHF.x","Forex",0.00001,1.200624324649,0.01,100,0.01,5,true],["NZDJPY.x","Forex",0.001,0.63155235569,0.01,100,0.01,3,true],["NZDUSD.x","Forex",0.00001,1,0.01,100,0.01,5,true],["USDCAD.x","Forex",0.00001,0.703596079563,0.01,100,0.01,5,true],["USDCHF.x","Forex",0.00001,1.200624324649,0.01,100,0.01,5,true],["USDJPY.x","Forex",0.001,0.63155235569,0.01,100,0.01,3,true],["XAGUSD.x","Metals",0.001,5,0.01,500,0.01,3,true],["XAUEUR.x","Metals",0.01,1.12566,0.01,100,0.01,2,true],["XAUUSD.x","Metals",0.01,1,0.01,100,0.01,2,true],["ASXAUD.x","Indices",0.1,0.69817,0.01,100,0.01,1,true],["ESXEUR.x","Indices",0.01,0.112566,0.01,100,0.01,2,true],["F40EUR.x","Indices",0.01,0.112566,0.01,100,0.01,2,true],["DAXEUR.x","Indices",0.01,0.112566,0.01,100,0.01,2,true],["HSIHKD.x","Indices",0.1,0.127424895766,0.01,100,0.01,1,true],["IBXEUR.x","Indices",0.01,0.112566,0.01,100,0.01,2,true],["FTSGBP.x","Indices",0.01,0.132704,0.01,100,0.01,2,true],["NDXUSD.x","Indices",0.01,0.1,0.01,100,0.01,2,true],["DJIUSD.x","Indices",0.01,0.1,0.01,100,0.01,2,true],["NIKJPY.x","Indices",1,0.632219152447,0.01,170,0.01,0,true],["SPXUSD.x","Indices",0.01,0.1,0.01,100,0.01,2,true],["BRNUSD.x","Energy",0.01,10,0.01,100,0.01,2,true],["WTIUSD.x","Energy",0.01,10,0.01,100,0.01,2,true],["NGCUSD.x","Energy",0.001,10,0.01,100,0.01,3,true],["ETHUSD.x","Crypto",0.1,0.1,0.01,100,0.01,1,true],["BTCUSD.x","Crypto",0.1,0.1,0.001,3,0.001,1,true],["LTCUSD.x","Crypto",0.001,0.001,0.1,100,0.1,3,false]];
+const SPECS = RAW.map(r=>({symbol:r[0],group:r[1],tickSize:r[2],tickValueLoss:r[3],minLot:r[4],maxLot:r[5],step:r[6],digits:r[7],sellCalcOK:r[8],buyCalcOK:true,bid:null,ask:null,status:r[8]?"READY":"PARTIAL_CALC"}));
+const GROUPS=[["Forex","فارکس"],["Metals","فلزات"],["Indices","شاخص‌ها"],["Energy","انرژی"],["Crypto","سایر نمادهای موجود"]];
+const $=id=>document.getElementById(id);
+let direction="BUY",stopMode="prices",capitalMode="Balance",lastLot=null;
+const fmt=(n,d=6)=>Number.isFinite(Number(n))?Number(n).toLocaleString("en-US",{maximumFractionDigits:d}):"—";
+const money=n=>Number.isFinite(n)?new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:2}).format(n):"—";
+function active(a,b,first){$(a).classList.toggle("active",first);$(b).classList.toggle("active",!first)}
+function current(){return SPECS.find(s=>s.symbol===$("symbol").value)||SPECS[0]}
+function build(){
+ const sel=$("symbol");
+ GROUPS.forEach(([g,label])=>{const rows=SPECS.filter(s=>s.group===g);if(!rows.length)return;const opt=document.createElement("optgroup");opt.label=label;rows.forEach(s=>{const o=document.createElement("option");o.value=s.symbol;o.textContent=s.symbol;opt.appendChild(o)});sel.appendChild(opt)});
+ sel.value="XAUUSD.x";updateSpec();restoreInputs();
+}
+function resetOutput(){lastLot=null;["lotResult","targetRisk","actualRisk","actualPct","riskPerLot","tickCount","usedDistance"].forEach(id=>$(id).textContent="—");$("lotCaption").textContent="واردکردن اطلاعات لازم است";$("copyMsg").textContent=""}
+function setStatus(text,type){$("status").textContent=text;$("status").className="status"+(type?" "+type:"")}
+function updateSpec(){
+ const s=current();
+ $("symMeta").textContent="گروه: "+GROUPS.find(g=>g[0]===s.group)[1]+" · ارز حساب USD"+(s.status!=="READY"?" · محاسبه یک جهت تأیید نشده":"");
+ $("spTick").textContent=fmt(s.tickSize,10);
+ $("spTickValue").textContent=fmt(s.tickValueLoss,8);
+ $("spMin").textContent=fmt(s.minLot,6);$("spStep").textContent=fmt(s.step,6);$("spMax").textContent=fmt(s.maxLot,6);
+ $("spQuotes").textContent="در فایل موجود نیست / برای اجرا از قیمت زنده خودت استفاده کن";
+ calculate();
+}
+function setDirection(d){direction=d;active("buy","sell",d==="BUY");calculate()}
+function setMode(m){stopMode=m;active("byPrices","byDistance",m==="prices");$("entryWrap").hidden=m!=="prices";$("stopWrap").hidden=m!=="prices";$("distanceWrap").hidden=m!=="distance";calculate()}
+function setCapitalMode(m){capitalMode=m;active("balance","equity",m==="Balance");$("capitalLabel").textContent=(m==="Balance"?"موجودی حساب":"ارزش حساب")+" (USD)"}
+function calculate(){
+ resetOutput();const s=current();
+ if(!s||!(s.tickSize>0)||!(s.tickValueLoss>0)||!(s.step>0)||!(s.minLot>0)||!(s.maxLot>=s.minLot)){setStatus("مشخصات این نماد معتبر نیست؛ محاسبه متوقف شد.","bad");return}
+ if(direction==="SELL"&&!s.sellCalcOK){setStatus("محاسبه زیان SELL برای این نماد در خروجی MT5 تأیید نشده است؛ برای جلوگیری از حجم اشتباه، خروجی فروش غیرفعال است.","bad");return}
+ const capital=Number($("capital").value), pct=Number($("riskPct").value);
+ if(!Number.isFinite(capital)||capital<=0||!Number.isFinite(pct)||pct<=0||pct>100){setStatus("موجودی/Equity مثبت و درصد ریسک بین ۰ و ۱۰۰ را وارد کن.");return}
+ let distance;
+ if(stopMode==="prices"){
+  const entry=Number($("entry").value),stop=Number($("stop").value);
+  if(!Number.isFinite(entry)||!Number.isFinite(stop)||entry<=0||stop<=0){setStatus("قیمت ورود و حد ضرر را وارد کن.");return}
+  if(direction==="BUY"&&stop>=entry){setStatus("برای BUY، حد ضرر باید پایین‌تر از ورود باشد.","bad");return}
+  if(direction==="SELL"&&stop<=entry){setStatus("برای SELL، حد ضرر باید بالاتر از ورود باشد.","bad");return}
+  distance=Math.abs(entry-stop);
+ }else{
+  distance=Number($("distance").value);
+  if(!Number.isFinite(distance)||distance<=0){setStatus("فاصله استاپ را به‌صورت عدد مثبت و برحسب واحد قیمت وارد کن.");return}
+ }
+ const ticks=Math.max(1,Math.ceil(distance/s.tickSize-1e-9));
+ const effectiveDistance=ticks*s.tickSize, riskPerLot=ticks*s.tickValueLoss, target=capital*pct/100, rawLot=target/riskPerLot;
+ const capped=Math.min(rawLot,s.maxLot), count=Math.floor(capped/s.step+1e-9), decimals=(String(s.step).split(".")[1]||"").length;
+ let lot=Number((count*s.step).toFixed(Math.min(8,decimals)));
+ if(lot<s.minLot-1e-9)lot=0;
+ const actual=lot*riskPerLot, actualPct=capital?actual/capital*100:0;
+ $("lotResult").textContent=lot>0?fmt(lot,6):"NO TRADE";$("lotCaption").textContent=lot>0?"حجم سفارش برحسب لات":"حجم از حداقل مجاز کمتر است";
+ $("targetRisk").textContent=money(target);$("actualRisk").textContent=money(actual);$("actualPct").textContent=fmt(actualPct,3)+"%";
+ $("riskPerLot").textContent=money(riskPerLot);$("tickCount").textContent=fmt(ticks,0);$("usedDistance").textContent=fmt(effectiveDistance, s.digits);
+ $("selectedInfo").textContent="نماد: "+s.symbol+" · Tick Value و مشخصات قرارداد براساس خروجی MT5 مورخ ۱۴ اکتبر ۲۰۲۶ هستند.";
+ if(lot<=0){setStatus("ریسک مجاز برای این استاپ کمتر از زیان حداقل لات است؛ معامله نکن یا ریسک/استاپ را بازبینی کن.","warn");return}
+ lastLot=lot;
+ if(rawLot>s.maxLot){setStatus("لات به سقف مجاز این نماد محدود شد؛ ریسک واقعی از بودجه ریسک کمتر خواهد بود.","warn")}
+ else if(s.status!=="READY"){setStatus("لات محاسبه شد، اما کیفیت داده این نماد کامل نیست. در این جهت مشخصاً تأییدشده است؛ پیش از معامله، با دمو کنترل کن.","warn")}
+ else{setStatus("محاسبه انجام شد. لات رو به پایین و فاصله استاپ رو به بالا گرد شده‌اند؛ زیان نهایی به اسلیپیج و هزینه‌ها وابسته است.","good")}
+}
+function saveInputs(){try{localStorage.setItem("plsz",""+JSON.stringify({capital:$("capital").value,riskPct:$("riskPct").value,symbol:$("symbol").value,capitalMode}))}catch(e){}}
+function restoreInputs(){try{const v=JSON.parse(localStorage.getItem("plsz")||"{}");if(v.capital)$("capital").value=v.capital;if(v.riskPct)$("riskPct").value=v.riskPct;if(v.symbol&&SPECS.some(s=>s.symbol===v.symbol))$("symbol").value=v.symbol;capitalMode=v.capitalMode==="Equity"?"Equity":"Balance";setCapitalMode(capitalMode)}catch(e){}}
+$("symbol").addEventListener("change",()=>{updateSpec();saveInputs()});
+["capital","riskPct","entry","stop","distance"].forEach(id=>$(id).addEventListener("input",()=>{calculate();saveInputs()}));
+$("buy").addEventListener("click",()=>setDirection("BUY"));$("sell").addEventListener("click",()=>setDirection("SELL"));
+$("byPrices").addEventListener("click",()=>setMode("prices"));$("byDistance").addEventListener("click",()=>setMode("distance"));
+$("balance").addEventListener("click",()=>{setCapitalMode("Balance");saveInputs()});$("equity").addEventListener("click",()=>{setCapitalMode("Equity");saveInputs()});
+$("calcBtn").addEventListener("click",calculate);
+$("resetBtn").addEventListener("click",()=>{["entry","stop","distance"].forEach(id=>$(id).value="");calculate()});
+$("copyBtn").addEventListener("click",async()=>{if(!(lastLot>0)){$("copyMsg").textContent="ابتدا حجم معتبر را محاسبه کن.";return}try{await navigator.clipboard.writeText(String(lastLot));$("copyMsg").textContent="لات "+lastLot+" کپی شد."}catch(e){$("copyMsg").textContent="کپی خودکار در این مرورگر در دسترس نیست؛ مقدار لات را دستی کپی کن: "+lastLot}});
+build();
+if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js").catch(()=>{}))}
+</script>
+</body>
+</html>
