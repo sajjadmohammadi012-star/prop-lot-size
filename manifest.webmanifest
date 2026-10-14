@@ -1,0 +1,26 @@
+{
+  "id": "./",
+  "name": "ماشین‌حساب لات سایز پراپ",
+  "short_name": "Prop Lot Size",
+  "description": "محاسبه لات بر اساس ریسک، استاپ و مشخصات نمادهای MT5",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
+  "orientation": "portrait",
+  "background_color": "#0b1220",
+  "theme_color": "#0b1220",
+  "icons": [
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
