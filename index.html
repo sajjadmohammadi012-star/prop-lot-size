@@ -69,10 +69,10 @@ button.primary:hover{background:linear-gradient(135deg,#115e59,#0f766e)}
 <body>
 <div class="wrap">
 <header>
-<div class="tag">MT5 · PROP ACCOUNT · OFFLINE READY</div>
+<div class="tag">MT5 · INSTITUTIONAL LIGHT · v2.1</div>
 <h1>ماشین‌حساب اختصاصی لات سایز</h1>
 <div class="sub">درصد ریسک، موجودی حساب و حد ضرر را وارد کن؛ حجم سفارش با محدودیت‌های نماد و گام لات محاسبه می‌شود.</div>
-<div class="chips"><span class="chip">۴۸ نماد دارای پسوند .x</span><span class="chip">ارز حساب: USD</span><span class="chip">محاسبه آفلاین</span></div>
+<div class="chips"><span class="chip">۴۸ نماد دارای پسوند .x</span><span class="chip">ارز حساب: USD</span><span class="chip">Institutional Light · v2.1</span></div>
 </header>
 <div class="layout">
 <section class="card">
@@ -191,7 +191,18 @@ $("calcBtn").addEventListener("click",calculate);
 $("resetBtn").addEventListener("click",()=>{["entry","stop","distance"].forEach(id=>$(id).value="");calculate()});
 $("copyBtn").addEventListener("click",async()=>{if(!(lastLot>0)){$("copyMsg").textContent="ابتدا حجم معتبر را محاسبه کن.";return}try{await navigator.clipboard.writeText(String(lastLot));$("copyMsg").textContent="لات "+lastLot+" کپی شد."}catch(e){$("copyMsg").textContent="کپی خودکار در این مرورگر در دسترس نیست؛ مقدار لات را دستی کپی کن: "+lastLot}});
 build();
-if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js").catch(()=>{}))}
+if("serviceWorker" in navigator){
+ let refreshedAfterUpdate=false;
+ navigator.serviceWorker.addEventListener("controllerchange",()=>{
+  if(!refreshedAfterUpdate){refreshedAfterUpdate=true;window.location.reload();}
+ });
+ window.addEventListener("load",async()=>{
+  try{
+   const reg=await navigator.serviceWorker.register("./service-worker.js",{updateViaCache:"none"});
+   reg.update().catch(()=>{});
+  }catch(e){}
+ });
+}
 </script>
 </body>
 </html>
