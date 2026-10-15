@@ -1,4 +1,4 @@
-const CACHE_NAME = "prop-lot-size-shell-v4";
+const CACHE_NAME = "prop-lot-size-shell-v5";
 const APP_FILES = ["./", "./index.html", "./manifest.webmanifest", "./icons/icon.svg"];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_NAME)

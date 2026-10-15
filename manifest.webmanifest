@@ -2,7 +2,7 @@
   "id": "./",
   "name": "ماشین‌حساب لات سایز پراپ",
   "short_name": "Prop Lot Size",
-  "description": "محاسبه حجم معامله با تم Graphite & Gold",
+  "description": "محاسبه حجم معامله با رابط Graphite & Gold",
   "lang": "fa",
   "dir": "rtl",
   "start_url": "./",
@@ -10,14 +10,7 @@
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
   "orientation": "portrait",
-  "background_color": "#0a0b0d",
-  "theme_color": "#101216",
-  "icons": [
-    {
-      "src": "./icons/icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
-  ]
+  "background_color": "#090a0c",
+  "theme_color": "#090a0c",
+  "icons": [{"src":"./icons/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
 }
