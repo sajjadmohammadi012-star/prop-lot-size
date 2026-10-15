@@ -1,16 +1,59 @@
-const CACHE_NAME = "prop-lot-size-shell-v2";
-const ASSETS = ["./", "./index.html", "./manifest.webmanifest", "./icons/icon.svg"];
+const CACHE_NAME = "prop-lot-size-shell-v3";
+const APP_FILES = ["./", "./index.html", "./manifest.webmanifest", "./icons/icon.svg"];
+
 self.addEventListener("install", event => {
-  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS.map(p => new URL(p, self.registration.scope).href))).then(() => self.skipWaiting()));
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(APP_FILES.map(path => new URL(path, self.registration.scope).href)))
+      .then(() => self.skipWaiting())
+  );
 });
+
 self.addEventListener("activate", event => {
-  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k.startsWith("prop-lot-size-") && k !== CACHE_NAME).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+  event.waitUntil(
+    caches.keys()
+      .then(keys => Promise.all(
+        keys.filter(key => key.startsWith("prop-lot-size-shell-") && key !== CACHE_NAME)
+          .map(key => caches.delete(key))
+      ))
+      .then(() => self.clients.claim())
+  );
 });
+
 self.addEventListener("fetch", event => {
-  const req = event.request, url = new URL(req.url);
-  if (req.method !== "GET" || url.origin !== self.location.origin || !url.href.startsWith(self.registration.scope)) return;
-  event.respondWith(caches.match(req, {ignoreSearch:true}).then(cached => cached || fetch(req).then(res => {
-    if (res && res.ok) { const copy=res.clone(); caches.open(CACHE_NAME).then(c=>c.put(req,copy)); }
-    return res;
-  }).catch(() => req.mode === "navigate" ? caches.match(new URL("./index.html",self.registration.scope).href) : Response.error())));
+  const request = event.request;
+  const url = new URL(request.url);
+  if (request.method !== "GET" || url.origin !== self.location.origin ||
+      !url.href.startsWith(self.registration.scope)) return;
+
+  const isNavigation = request.mode === "navigate";
+  if (isNavigation) {
+    // Prefer the latest deployed HTML whenever online. Use the cached shell only offline.
+    event.respondWith(
+      fetch(request, { cache: "no-store" })
+        .then(response => {
+          if (response && response.ok) {
+            const copy = response.clone();
+            caches.open(CACHE_NAME).then(cache =>
+              cache.put(new URL("./index.html", self.registration.scope).href, copy)
+            );
+          }
+          return response;
+        })
+        .catch(() => caches.match(new URL("./index.html", self.registration.scope).href))
+    );
+    return;
+  }
+
+  // Static shell assets are cache-first; install/update seeds the newest copy.
+  event.respondWith(
+    caches.match(request, { ignoreSearch: true })
+      .then(cached => cached || fetch(request).then(response => {
+        if (response && response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
+        }
+        return response;
+      }).catch(() => Response.error()))
+  );
 });
