@@ -1,4 +1,4 @@
-const CACHE_NAME = "prop-lot-size-shell-v1";
+const CACHE_NAME = "prop-lot-size-shell-v2";
 const ASSETS = ["./", "./index.html", "./manifest.webmanifest", "./icons/icon.svg"];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS.map(p => new URL(p, self.registration.scope).href))).then(() => self.skipWaiting()));
