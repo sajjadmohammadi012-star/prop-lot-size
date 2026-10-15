@@ -1,17 +1,16 @@
-# ماشین‌حساب لات سایز پراپ
+# Goldline Tools — Prop Lot Size
 
-وب‌اپ نصب‌شونده برای موبایل با رابط فارسی Graphite & Gold، محاسبه حجم مبتنی بر ریسک و مشخصات ۴۸ نماد خروجی‌گرفته از MT5.
+Mobile-first Persian position sizing calculator, with animated Goldline risk dashboard and locally embedded MT5 symbol data.
 
-## انتشار
-سایت با GitHub Pages از شاخه `main` و ریشه مخزن منتشر می‌شود.
+## GitHub Pages
+Published from branch `main`, repository root.
 
-## نصب روی iPhone
-لینک HTTPS را در Safari باز کنید، روی Share بزنید و Add to Home Screen را انتخاب کنید. اپ پس از باز شدن آنلاین، پوسته خود را کش می‌کند و برای استفاده پایه به‌صورت آفلاین هم باز می‌شود.
+## iPhone installation
+Open the HTTPS Pages URL in Safari, then Share → Add to Home Screen. The app uses a service worker for the offline shell and refreshes to the latest HTML when online.
 
-## محاسبه و محدودیت‌ها
-- فاصله استاپ برحسب Tick Size به تیک کامل رو به بالا گرد می‌شود.
-- حجم با رعایت Volume Step و حداقل/حداکثر لات رو به پایین گرد می‌شود.
-- مشخصات قرارداد و Tick Value یک snapshot از خروجی MT5 در ۱۴ اکتبر ۲۰۲۶ هستند، نه اطلاعات زنده.
-- کمیسیون، اسلیپیج و تغییرات نرخ تبدیل ممکن است زیان واقعی را بالا ببرند.
-- برای LTCUSD.x محاسبه سمت SELL در CSV تأیید نشده و غیرفعال می‌ماند.
-- پیش از استفاده روی حساب واقعی، خروجی را با متاتریدر/دمو تطبیق دهید.
+## Risk calculation notes
+- Uses contract specifications from the MT5 CSV snapshot dated 14 October 2026; these are not live tick values.
+- Stop distance is rounded up to whole ticks and lot size down to broker volume steps.
+- Commission, slippage and changing conversion values are not included.
+- LTCUSD.x SELL remains disabled because that direction was not verified in the exporter output.
+- Verify against MT5 or demo before live use.

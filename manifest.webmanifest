@@ -1,16 +1,10 @@
 {
-  "id": "./",
-  "name": "ماشین‌حساب لات سایز پراپ",
-  "short_name": "Prop Lot Size",
-  "description": "محاسبه حجم معامله با رابط Graphite & Gold",
-  "lang": "fa",
-  "dir": "rtl",
-  "start_url": "./",
-  "scope": "./",
-  "display": "standalone",
-  "display_override": ["standalone", "minimal-ui"],
-  "orientation": "portrait",
-  "background_color": "#090a0c",
-  "theme_color": "#090a0c",
-  "icons": [{"src":"./icons/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+  "id":"./",
+  "name":"ماشین‌حساب لات سایز پراپ",
+  "short_name":"Goldline",
+  "description":"ماشین‌حساب حرفه‌ای حجم معامله و کنترل ریسک",
+  "lang":"fa","dir":"rtl","start_url":"./","scope":"./",
+  "display":"standalone","display_override":["standalone","minimal-ui"],"orientation":"portrait",
+  "background_color":"#08090b","theme_color":"#08090b",
+  "icons":[{"src":"./icons/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
 }
